@@ -33,6 +33,7 @@ class App extends React.Component {
   };
 
   formSubmitHandler = data => {
+    console.log(data);
     //  check the same contact
     const normalizedName = data.name.toLowerCase();
     const isTheSame = this.state.contacts.find(
