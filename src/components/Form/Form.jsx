@@ -4,12 +4,12 @@ import { nanoid } from 'nanoid';
 
 import { MainForm, InputWrapper, Label, Input, Button } from './From.styled';
 
-export default function Form() {
+export default function Form({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  let nameInputId = nanoid();
-  let phoneInputId = nanoid();
+  const nameInputId = nanoid();
+  const phoneInputId = nanoid();
 
   const handleChange = e => {
     switch (e.currentTarget.name) {
@@ -20,6 +20,9 @@ export default function Form() {
       case 'number':
         setNumber(e.currentTarget.value);
         break;
+
+      default:
+        return;
     }
   };
 
@@ -30,7 +33,7 @@ export default function Form() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+    onSubmit({ name, number });
     formReset();
   };
 
