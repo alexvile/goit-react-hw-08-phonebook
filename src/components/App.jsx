@@ -1,7 +1,13 @@
 import { nanoid } from 'nanoid';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { add, remove, setFilter } from '../redux/contactsSlice';
+import {
+  add,
+  remove,
+  setFilter,
+  getContacts,
+  getFilter,
+} from '../redux/contactsSlice';
 
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
@@ -9,17 +15,9 @@ import ContactList from './ContactList/ContactList';
 import { Container, Title, Subtitle } from './App.styled';
 
 export default function App() {
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
-
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(localStorage.getItem('contacts')) ?? []
-  // );
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
 
   const pushDataToArr = contact => {
     dispatch(add(contact));

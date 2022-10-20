@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export const contactsSlice = createSlice({
+ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     contacts: [],
@@ -20,7 +22,19 @@ export const contactsSlice = createSlice({
   }
 })
 
-// // Action creators are generated for each case reducer function
+const persistConfig = {
+  key: 'contacts',
+    storage,
+   blacklist: ['filter']
+}
+
+export const contactsReducer = persistReducer(
+  persistConfig,
+  contactsSlice.reducer
+);
+
 export const { add, remove, setFilter } = contactsSlice.actions
 
-// export default contactsSlice.reducer
+// Selectors
+export const getContacts = state => state.contacts.contacts;
+export const getFilter = state => state.contacts.filter;
