@@ -4,6 +4,7 @@ import ContactItem from 'components/ContactItem/ContactItem';
 import { List } from './ContactList.styled';
 
 const ContactList = ({ filteredContacts, onDeleteContact }) => {
+  // console.log(filteredContacts);
   return (
     <List>
       {filteredContacts.map(({ id, name, number }) => {

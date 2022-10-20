@@ -11,23 +11,16 @@ export const contactsSlice = createSlice({
     add(state, action) { 
       state.contacts.push(action.payload)
     }, 
-    delete1(state, action) {
-      state.contacts.filter(contact => contact.id !== action.payload)
+    remove(state, action) {
+      return { ...state, contacts: state.contacts.filter(contact => contact.id !== action.payload) }
     },
-
-     // increment: state => {
-    //   state.value += 1
-    // },
-    // decrement: state => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload
-    // }
+    setFilter(state, action) { 
+      state.filter = action.payload
+    }
   }
 })
 
 // // Action creators are generated for each case reducer function
-export const { add, delete1 } = contactsSlice.actions
+export const { add, remove, setFilter } = contactsSlice.actions
 
 // export default contactsSlice.reducer
