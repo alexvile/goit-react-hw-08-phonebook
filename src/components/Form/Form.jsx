@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { add, getContacts } from '../../redux/contactsSlice';
+import { getContacts, addContact } from '../../redux/contactsSlice';
 
 import { nanoid } from 'nanoid';
 import { MainForm, InputWrapper, Label, Input, Button } from './From.styled';
@@ -17,7 +17,7 @@ export default function Form() {
   const contacts = useSelector(getContacts);
 
   const pushDataToArr = contact => {
-    dispatch(add(contact));
+    dispatch(addContact(contact));
   };
 
   const formSubmitHandler = data => {
@@ -33,7 +33,6 @@ export default function Form() {
       return;
     }
 
-    data.id = nanoid();
     pushDataToArr(data);
   };
 
@@ -59,7 +58,7 @@ export default function Form() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    formSubmitHandler({ name, number });
+    formSubmitHandler({ name, phone: number });
     formReset();
   };
 

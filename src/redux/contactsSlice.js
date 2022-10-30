@@ -1,40 +1,94 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import axios from "axios"
+const BASE_URL = 'https://635acc94aa7c3f113dafba06.mockapi.io/api/v1/'
+
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchAll',
+  async () => {
+    const { data } = await axios.get(`${BASE_URL}/contacts`);
+    return data;
+  }
+)
+
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async (contact) => { 
+    const { data } = await axios.post(`${BASE_URL}/contacts`, contact);
+    return data;
+  }
+)
+
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id) => { 
+    const { data } = await axios.delete(`${BASE_URL}/contacts/${id}`);
+    return data;
+  }
+)
  const contactsSlice = createSlice({
-  name: 'contacts',
+  name: 'phonebook',
   initialState: {
-    contacts: [],
+    contacts: {
+      items: [],
+      isLoading: false,
+      error: null
+    },
     filter: ""
 },
   
   reducers: {
-    add(state, action) { 
-      state.contacts.push(action.payload)
-    }, 
-    remove(state, action) {
-      return { ...state, contacts: state.contacts.filter(contact => contact.id !== action.payload) }
-    },
     setFilter(state, action) { 
       state.filter = action.payload
     }
-  }
+   },
+   extraReducers: {
+     [fetchContacts.pending]: (state) => {
+        state.isLoading = true;
+    },
+     [fetchContacts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts.items = [...action.payload];
+     },
+    [fetchContacts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+     },
+     [addContact.pending]: (state) => { 
+        state.isLoading = true;
+     },
+    [addContact.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts.items = [...state.contacts.items, action.payload];
+     },
+    [addContact.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+     },
+    [deleteContact.pending]: (state) => { 
+        state.isLoading = true;
+     },
+    [deleteContact.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts.items = state.contacts.items.filter(contact => contact.id !== action.payload.id);
+     },
+    [deleteContact.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+     },
+  },
 })
 
-const persistConfig = {
-  key: 'contacts',
-    storage,
-   blacklist: ['filter']
-}
-
-export const contactsReducer = persistReducer(
-  persistConfig,
-  contactsSlice.reducer
-);
-
-export const { add, remove, setFilter } = contactsSlice.actions
+export const { remove, setFilter } = contactsSlice.actions
+export default contactsSlice.reducer
 
 // Selectors
-export const getContacts = state => state.contacts.contacts;
-export const getFilter = state => state.contacts.filter;
+export const getContacts = state => state.phonebook.contacts.items;
+export const getFilter = state => state.phonebook.filter;
+export const isLoading = state => state.phonebook.isLoading;
+export const errorMessage = state => state.phonebook.error;
+
+

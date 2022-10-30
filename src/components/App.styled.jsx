@@ -24,3 +24,11 @@ export const Subtitle = styled.h2`
   font-weight: 400;
   line-height: 1.2;
 `;
+
+export const ErrorMessage = styled.h2`
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+  color: red;
+`;
