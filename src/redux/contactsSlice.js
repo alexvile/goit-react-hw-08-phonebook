@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
 import axios from "axios"
+
 const BASE_URL = 'https://635acc94aa7c3f113dafba06.mockapi.io/api/v1/'
 
 export const fetchContacts = createAsyncThunk(
@@ -82,7 +82,7 @@ export const deleteContact = createAsyncThunk(
   },
 })
 
-export const { remove, setFilter } = contactsSlice.actions
+export const { setFilter } = contactsSlice.actions
 export default contactsSlice.reducer
 
 // Selectors
