@@ -34,6 +34,7 @@ export default function Form() {
     }
 
     pushDataToArr(data);
+    formReset();
   };
 
   const handleChange = e => {
@@ -59,7 +60,6 @@ export default function Form() {
   const handleSubmit = e => {
     e.preventDefault();
     formSubmitHandler({ name, phone: number });
-    formReset();
   };
 
   return (
