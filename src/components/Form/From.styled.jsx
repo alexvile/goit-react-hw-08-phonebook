@@ -39,7 +39,11 @@ export const Button = styled.button`
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
   font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
     Helvetica, Arial, sans-serif;
   font-size: 17px;
