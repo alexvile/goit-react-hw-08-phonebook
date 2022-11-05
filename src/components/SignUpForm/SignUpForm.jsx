@@ -34,36 +34,32 @@ export const SignUpForm = () => {
   };
 
   return (
-    <>
-      <h1>SIGN UP</h1>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Name</span>
-          <input name="name" type="text" value={name} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          <span>Email</span>
-          <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          <span>Password</span>
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <label>
+        <span>Name</span>
+        <input name="name" type="text" value={name} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        <span>Email</span>
+        <input
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        <span>Password</span>
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
