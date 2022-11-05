@@ -15,21 +15,45 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact) => { 
-    console.log(contact);
+    // console.log(contact);
     const { data } = await axios.post('/contacts', contact);
     return data;
   }
 )
 
-const BASE_URL = 'https://635acc94aa7c3f113dafba06.mockapi.io/api/v1/'
-
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id) => { 
-    const { data } = await axios.delete(`${BASE_URL}/contacts/${id}`);
+    const { data } = await axios.delete(`/contacts/${id}`);
+    console.log(data);
     return data;
   }
 )
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async (contact, thunkApi) => { 
+    console.log(contact, thunkApi);
+    const { data } = await axios.patch(`/contacts/${contact.id}`, ({name: contact.name, number: contact.number}));
+    console.log(data);
+    return data;
+  }
+)
+  
+  
+function updateObjectInArray(array, change) {
+  return array.map((item) => {
+    if (item.id !== change.id) {
+      return item
+    }
+    return {
+      ...item,
+      ...change
+    }
+  })
+}
+       
+
+
  const contactsSlice = createSlice({
   name: 'phonebook',
   initialState: {
@@ -86,8 +110,17 @@ export const deleteContact = createAsyncThunk(
       state.isLoading = false;
       state.error = action.error.message;
      },
+     [updateContact.fulfilled]: (state, action) => { 
+       console.log(action);
+       updateObjectInArray(state.contacts.items, action.payload);
+      // state.contacts.items = [...state.contacts.items, action.payload];
+      //  state.contacts.items.push(action.payload);
+      //  state.contacts.items = state.contacts.items.filter(contact => contact.id === action.payload.id);
+       
+     }
   },
-})
+ })
+
 
 export const { setFilter } = contactsSlice.actions
 export default contactsSlice.reducer

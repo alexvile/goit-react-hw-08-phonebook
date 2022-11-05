@@ -19,6 +19,7 @@ export default function App() {
   const dispatch = useDispatch();
   // const error = useSelector(errorMessage);
   useEffect(() => {
+    console.log('fethcing current user');
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 

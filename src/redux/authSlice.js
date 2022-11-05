@@ -106,8 +106,8 @@ const authSlice = createSlice({
          },
          [fetchCurrentUser.fulfilled]: (state, action) => { 
              console.log('action ', action);
-            //  state.user = { ...action.payload };
-            //  state.isLoggedIn = true;
+             state.user = action.payload ;
+             state.isLoggedIn = true;
          }
      }
 })
