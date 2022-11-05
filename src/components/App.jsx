@@ -1,11 +1,10 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
-import { errorMessage } from '../redux/contactsSlice';
+// import { errorMessage } from '../redux/contactsSlice';
 // import { Container, Title, Subtitle, ErrorMessage } from './App.styled';
-import { SignUpForm } from './SignUpForm/SignUpForm';
 import { Layout } from './Layout/Layout';
 
 import Home from '../Pages/Home/Home';
@@ -25,6 +24,7 @@ export default function App() {
           <Route path="register" element={<Register />}></Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="phonebook" element={<Phonebook />}></Route>
+          <Route path="*" element={<div>404</div>} />
         </Route>
       </Routes>
     </>

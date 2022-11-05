@@ -1,22 +1,11 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authSlice';
 
-export const SignUpForm = () => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
+export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const resetForm = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
-        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -25,26 +14,13 @@ export const SignUpForm = () => {
         return;
     }
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    // console.log({ name, email, password });
-    dispatch(register({ name, email, password }));
-    resetForm();
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <span>Name</span>
-        <input name="name" type="text" value={name} onChange={handleChange} />
-      </label>
-      <br />
+    <form>
       <label>
         <span>Email</span>
         <input
-          name="email"
           type="email"
+          name="email"
           value={email}
           onChange={handleChange}
         />
@@ -53,9 +29,9 @@ export const SignUpForm = () => {
       <label>
         <span>Password</span>
         <input
+          type="password"
           autoComplete="off"
           name="password"
-          type="password"
           value={password}
           onChange={handleChange}
         />
