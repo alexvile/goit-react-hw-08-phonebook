@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/authSlice';
+import { register } from 'redux/authSlice';
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();

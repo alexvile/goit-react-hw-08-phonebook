@@ -1,8 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/authSlice';
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -14,8 +22,14 @@ export const LoginForm = () => {
         return;
     }
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
+    resetForm();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         <span>Email</span>
         <input

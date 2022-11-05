@@ -4,27 +4,39 @@ import axios from "axios"
 
 // Operations
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
-// const BASE_URL = 'https://connections-api.herokuapp.com'
-
 
 export const register = createAsyncThunk('auth/register',
-    async credentials => { 
-    console.log(credentials);
+    async credentials => {
+        // console.log(credentials);
         try {
             const { data } = await axios.post('/users/signup', credentials);
-            console.log(data);
+            console.log('data ' + data);
             return data
         } catch (error) {
             // console.log(error)
         }
-})
+    });
+
+export const login = createAsyncThunk('auth/login',
+    async credentials => { 
+        console.log(credentials);
+
+        try {
+            const { data } = await axios.post('/users/login', credentials);
+            return data
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
+)
 
 
 
 
 // Reducers
 const initialState = {
-    num: 0,
     user: { name: null, email: null },
     token: null,
     isLoggedIn: false
@@ -38,8 +50,10 @@ const authSlice = createSlice({
      },
      extraReducers: {
          [register.fulfilled]: (state, action) => { 
-             console.log(action);
-            state.num = state.num + 1
+             console.log('action ', action);
+             state.user = action.payload.user;
+             state.token = action.payload.token;
+             state.isLoggedIn = true;
          }
      }
 })
