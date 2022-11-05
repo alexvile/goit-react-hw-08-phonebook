@@ -25,7 +25,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id) => { 
     const { data } = await axios.delete(`/contacts/${id}`);
-    console.log(data);
+    // console.log(data);
     return data;
   }
 )
@@ -34,25 +34,11 @@ export const updateContact = createAsyncThunk(
   async (contact, thunkApi) => { 
     console.log(contact, thunkApi);
     const { data } = await axios.patch(`/contacts/${contact.id}`, ({name: contact.name, number: contact.number}));
-    console.log(data);
+    // console.log(data);
     return data;
   }
 )
   
-  
-function updateObjectInArray(array, change) {
-  return array.map((item) => {
-    if (item.id !== change.id) {
-      return item
-    }
-    return {
-      ...item,
-      ...change
-    }
-  })
-}
-       
-
 
  const contactsSlice = createSlice({
   name: 'phonebook',
@@ -111,13 +97,16 @@ function updateObjectInArray(array, change) {
       state.error = action.error.message;
      },
      [updateContact.fulfilled]: (state, action) => { 
-       console.log(action);
-       updateObjectInArray(state.contacts.items, action.payload);
-      // state.contacts.items = [...state.contacts.items, action.payload];
-      //  state.contacts.items.push(action.payload);
-      //  state.contacts.items = state.contacts.items.filter(contact => contact.id === action.payload.id);
-       
-     }
+       state.contacts.items = state.contacts.items.map(item => { 
+         if (item.id !== action.payload.id) { 
+           return item
+         }
+       return {
+         ...item,
+         ...action.payload
+         }
+         })
+    }
   },
  })
 
