@@ -37,12 +37,19 @@ export const SignUpForm = () => {
     <form onSubmit={handleSubmit}>
       <label>
         <span>Name</span>
-        <input name="name" type="text" value={name} onChange={handleChange} />
+        <input
+          autoComplete="off"
+          name="name"
+          type="text"
+          value={name}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <label>
         <span>Email</span>
         <input
+          autoComplete="off"
           name="email"
           type="email"
           value={email}
@@ -53,6 +60,7 @@ export const SignUpForm = () => {
       <label>
         <span>Password</span>
         <input
+          autoComplete="off"
           name="password"
           type="password"
           value={password}

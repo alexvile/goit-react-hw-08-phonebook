@@ -6,9 +6,15 @@ import { toast } from 'react-toastify';
 import { getContacts, addContact, isAdding } from '../../redux/contactsSlice';
 
 import { nanoid } from 'nanoid';
-import { MainForm, InputWrapper, Label, Input, Button } from './From.styled';
+import {
+  MainForm,
+  InputWrapper,
+  Label,
+  Input,
+  Button,
+} from './AddContactForm.styled';
 
-export default function Form() {
+export default function AddContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
