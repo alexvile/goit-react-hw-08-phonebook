@@ -54,6 +54,12 @@ const authSlice = createSlice({
              state.user = action.payload.user;
              state.token = action.payload.token;
              state.isLoggedIn = true;
+         },
+          [login.fulfilled]: (state, action) => { 
+             console.log('action ', action);
+             state.user = action.payload.user;
+             state.token = action.payload.token;
+             state.isLoggedIn = true;
          }
      }
 })
@@ -62,5 +68,5 @@ const authSlice = createSlice({
 export default authSlice.reducer
 
 // Selectors
-// export const getIsLoggedIn = state => state.auth.isLoggedIn;
-// export const getUsername = state => state.auth.user.name;
+export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getUsername = state => state.auth.user.name;

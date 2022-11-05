@@ -1,6 +1,12 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getIsLoggedIn } from 'redux/authSlice';
+
+import { AuthNav } from 'components/AuthNav/AuthNav';
+import { UserMenu } from 'components/UserMenu/UserMenu';
 
 export const AppBar = () => {
+  const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <header>
       <nav>
@@ -11,16 +17,12 @@ export const AppBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-          <li>
             <NavLink to="/phonebook">Phonebook</NavLink>
           </li>
         </ul>
+        {!isLoggedIn && <AuthNav />}
       </nav>
+      {isLoggedIn && <UserMenu />}
     </header>
   );
 };
