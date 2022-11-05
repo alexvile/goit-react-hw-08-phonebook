@@ -27,7 +27,7 @@ const ContactItem = ({ id, name, number }) => {
         disabled={isPending}
         onClick={() => removeContact(id, name)}
       >
-        Delete {id}
+        Delete
       </DeleteBtn>
     </Card>
   );
