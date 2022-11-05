@@ -54,11 +54,20 @@ export const logout = createAsyncThunk('auth/logout',
 
 export const fetchCurrentUser = createAsyncThunk('auth/refresh',
     async (_, thunkApi) => {
+        const state = thunkApi.getState();
+        const persistedToken = state.auth.token;
+        // console.log(persistedToken);
+        if (persistedToken === null) {
+            return thunkApi.rejectWithValue();
+        }
+        token.set(persistedToken);
         try {
-            console.log(thunkApi);
+            const { data } = await axios.get('/users/current');
+            return data;
         } catch (error) {
             // console.log(error);
         }
+
     }
 )
 
@@ -94,6 +103,11 @@ const authSlice = createSlice({
               state.user = { name: null, email: null };
               state.token = null;
               state.isLoggedIn = false;
+         },
+         [fetchCurrentUser.fulfilled]: (state, action) => { 
+             console.log('action ', action);
+            //  state.user = { ...action.payload };
+            //  state.isLoggedIn = true;
          }
      }
 })
