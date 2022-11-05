@@ -1,13 +1,27 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUsername } from 'redux/authSlice';
 
-export const UserMenu = () => {
-  const userName = useSelector(getUsername);
+import { logout } from 'redux/authSlice';
+import defaultAvatar from './default-avatar.png';
 
+export const UserMenu = () => {
+  const dispatch = useDispatch();
+  const userName = useSelector(getUsername);
+  const avatar = defaultAvatar;
   return (
     <div>
-      <div>Welcome, {userName && <span>{userName}</span>}</div>
-      <span>Logout</span>
+      <img src={avatar} width="32" alt="User avatar" />
+      <div>
+        Welcome, <span>{userName}</span>
+      </div>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch(logout());
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };

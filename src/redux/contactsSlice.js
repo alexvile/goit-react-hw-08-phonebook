@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 
-const BASE_URL = 'https://635acc94aa7c3f113dafba06.mockapi.io/api/v1/'
+// Operations
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com'
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async () => {
-    const { data } = await axios.get(`${BASE_URL}/contacts`);
+    const { data } = await axios.get('/contacts');
     return data;
   }
 )
@@ -14,10 +15,13 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact) => { 
-    const { data } = await axios.post(`${BASE_URL}/contacts`, contact);
+    console.log(contact);
+    const { data } = await axios.post('/contacts', contact);
     return data;
   }
 )
+
+const BASE_URL = 'https://635acc94aa7c3f113dafba06.mockapi.io/api/v1/'
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
@@ -59,12 +63,14 @@ export const deleteContact = createAsyncThunk(
      [addContact.pending]: (state) => { 
         state.isAdding = true;
      },
-    [addContact.fulfilled]: (state, action) => {
+     [addContact.fulfilled]: (state, action) => {
+      console.log(action);
       state.isAdding = false;
       state.error = null;
       state.contacts.items = [...state.contacts.items, action.payload];
      },
-    [addContact.rejected]: (state, action) => {
+     [addContact.rejected]: (state, action) => {
+      console.log(action);
       state.isAdding = false;
       state.error = action.error.message;
      },

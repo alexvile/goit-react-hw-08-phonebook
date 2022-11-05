@@ -41,7 +41,6 @@ export default function AddContactForm() {
       alert(`${isTheSame.name} is already in contacts`);
       return;
     }
-
     pushDataToArr(data);
     toast.success(`Contact "${data.name}" has been succesfully added`);
     formReset();
@@ -69,7 +68,9 @@ export default function AddContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    formSubmitHandler({ name, phone: number });
+    // console.log(e);
+    // console.log({ name, number });
+    formSubmitHandler({ name, number });
   };
 
   return (

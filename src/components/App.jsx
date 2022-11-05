@@ -1,19 +1,26 @@
 // import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+import { fetchCurrentUser } from 'redux/authSlice';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
 // import { errorMessage } from '../redux/contactsSlice';
 // import { Container, Title, Subtitle, ErrorMessage } from './App.styled';
 import { Layout } from './Layout/Layout';
-
 import Home from '../Pages/Home/Home';
 import Register from '../Pages/Register/Register';
 import Login from '../Pages/Login/Login';
 import Phonebook from 'Pages/Phonebook/Phonebook';
 
 export default function App() {
+  const dispatch = useDispatch();
   // const error = useSelector(errorMessage);
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <>
