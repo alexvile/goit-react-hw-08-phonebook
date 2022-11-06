@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsername } from 'redux/authSlice';
+import { getUserName, getUserEmail } from 'redux/authSlice';
 
 import { logout } from 'redux/authSlice';
 import defaultAvatar from './default-avatar.png';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const userName = useSelector(getUsername);
+  const userName = useSelector(getUserName);
+  const userEmail = useSelector(getUserEmail);
   const avatar = defaultAvatar;
   return (
     <div>
@@ -14,6 +15,7 @@ export const UserMenu = () => {
       <div>
         Welcome, <span>{userName}</span>
       </div>
+      <p>{userEmail}</p>
       <button
         type="button"
         onClick={() => {
