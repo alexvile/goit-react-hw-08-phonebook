@@ -3,6 +3,13 @@ import { getUserName, getUserEmail } from 'redux/authSlice';
 
 import { logout } from 'redux/authSlice';
 import defaultAvatar from './default-avatar.png';
+import {
+  UserContainer,
+  ImageWrapper,
+  WelcomeContainer,
+  WelcomeMessage,
+  Email,
+} from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -10,12 +17,16 @@ export const UserMenu = () => {
   const userEmail = useSelector(getUserEmail);
   const avatar = defaultAvatar;
   return (
-    <div>
-      <img src={avatar} width="32" alt="User avatar" />
-      <div>
-        Welcome, <span>{userName}</span>
-      </div>
-      <p>{userEmail}</p>
+    <UserContainer>
+      <ImageWrapper>
+        <img src={avatar} width="32" alt="User avatar" />
+      </ImageWrapper>
+      <WelcomeContainer>
+        <WelcomeMessage>
+          Welcome, <span>{userName}</span>
+        </WelcomeMessage>
+        <Email>{userEmail}</Email>
+      </WelcomeContainer>
       <button
         type="button"
         onClick={() => {
@@ -24,6 +35,6 @@ export const UserMenu = () => {
       >
         Logout
       </button>
-    </div>
+    </UserContainer>
   );
 };
