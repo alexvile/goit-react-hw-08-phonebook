@@ -4,12 +4,16 @@ import { getIsLoggedIn } from 'redux/authSlice';
 
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import Toolbar from '@mui/material/Toolbar';
+// import { Header, Navigation } from './AppBar.styled';
+
+import AppBarMiui from '@mui/material/AppBar';
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <header>
-      <nav>
+    <AppBarMiui position="static">
+      <Toolbar>
         <ul>
           <li>
             <NavLink to="/" end>
@@ -23,8 +27,8 @@ export const AppBar = () => {
           )}
         </ul>
         {!isLoggedIn && <AuthNav />}
-      </nav>
+      </Toolbar>
       {isLoggedIn && <UserMenu />}
-    </header>
+    </AppBarMiui>
   );
 };

@@ -114,6 +114,10 @@ const authSlice = createSlice({
              state.user = action.payload ;
              state.isLoggedIn = true;
              state.isRefreshingUser = false;
+         },
+        [fetchCurrentUser.rejected]: (state, _) => { 
+            //  console.log('action ', action);
+             state.isRefreshingUser = false;
          }
      }
 })

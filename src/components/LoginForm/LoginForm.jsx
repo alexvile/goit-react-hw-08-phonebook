@@ -1,11 +1,39 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+
 import { login } from 'redux/authSlice';
+import {
+  FormWrapper,
+  FormContainer,
+  ImageWrapper,
+  Title,
+  Description,
+  InputWrapper,
+  Input,
+  Button,
+  BottomText,
+  ShowHidePass,
+  IconCover,
+} from './LoginForm.styled';
+
+import pandaImg from './panda-svgrepo-com.svg';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [togglePass, setTogglePass] = useState('password');
+  const togglePassword = () => {
+    if (togglePass === 'password') {
+      setTogglePass('text');
+    } else {
+      setTogglePass('password');
+    }
+  };
 
   const resetForm = () => {
     setEmail('');
@@ -29,28 +57,52 @@ export const LoginForm = () => {
     resetForm();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <span>Email</span>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          autoComplete="off"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <FormWrapper>
+      <FormContainer>
+        <ImageWrapper>
+          <img src={pandaImg} width="64" alt="User avatar" />
+        </ImageWrapper>
+        <Title>Sign In</Title>
+        <Description>Please login to use the platform</Description>
+
+        <form onSubmit={handleSubmit}>
+          <InputWrapper>
+            <Input
+              placeholder="Enter email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <Input
+              placeholder="Enter password"
+              type={togglePass}
+              autoComplete="off"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+            <ShowHidePass onClick={togglePassword}>
+              {togglePass === 'password' ? (
+                <IconCover>
+                  <AiFillEye />
+                </IconCover>
+              ) : (
+                <IconCover>
+                  <AiFillEyeInvisible />
+                </IconCover>
+              )}
+            </ShowHidePass>
+          </InputWrapper>
+          <Button type="submit">Submit</Button>
+        </form>
+        <BottomText>
+          Don't have account?&nbsp;
+          <NavLink to="/register">Create a free account.</NavLink>
+        </BottomText>
+      </FormContainer>
+    </FormWrapper>
   );
 };

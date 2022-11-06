@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { getIsRefreshingUser } from 'redux/authSlice';
 import { useSelector } from 'react-redux';
+import { MainContainer } from './Layout.styled';
 
 export const Layout = () => {
   const isRefreshingUser = useSelector(getIsRefreshingUser);
@@ -13,7 +14,9 @@ export const Layout = () => {
     <>
       <AppBar />
       <Suspense fallback={<Loader />}>
-        <Outlet />
+        <MainContainer>
+          <Outlet />
+        </MainContainer>
       </Suspense>
     </>
   );
