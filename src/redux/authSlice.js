@@ -76,7 +76,8 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh',
 const initialState = {
     user: { name: null, email: null },
     token: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    isRefreshingUser: false
 }
 
 const authSlice = createSlice({
@@ -104,10 +105,15 @@ const authSlice = createSlice({
               state.token = null;
               state.isLoggedIn = false;
          },
+        [fetchCurrentUser.pending]: (state) => { 
+            //  console.log('action ', action);
+             state.isRefreshingUser = true;
+         },
          [fetchCurrentUser.fulfilled]: (state, action) => { 
-             console.log('action ', action);
+            //  console.log('action ', action);
              state.user = action.payload ;
              state.isLoggedIn = true;
+             state.isRefreshingUser = false;
          }
      }
 })
@@ -118,4 +124,7 @@ export default authSlice.reducer
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
 export const getUserName = state => state.auth.user.name;
 export const getUserEmail = state => state.auth.user.email;
+export const getIsRefreshingUser = state => state.auth.isRefreshingUser;
+
+
 
