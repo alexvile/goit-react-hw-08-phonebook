@@ -16,6 +16,8 @@ import { Layout } from './Layout/Layout';
 // import Phonebook from 'Pages/Phonebook/Phonebook';
 
 import { lazy } from 'react';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import { PublicRoute } from './PublicRoute/PublicRoute';
 
 const Home = lazy(() => import('../Pages/Home/Home'));
 const Register = lazy(() => import('../Pages/Register/Register'));
@@ -35,10 +37,31 @@ export default function App() {
       {/* <ToastContainer autoClose={1250} /> */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />}></Route>
-          <Route path="register" element={<Register />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="contacts" element={<Phonebook />}></Route>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Phonebook />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<div>404</div>} />
         </Route>
       </Routes>
