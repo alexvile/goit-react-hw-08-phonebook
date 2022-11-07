@@ -14,8 +14,10 @@ export const Navigation = styled.nav`
 export const MainNav = styled.ul`
   display: flex;
   list-style-type: none;
+  gap: 15px;
   li {
     a {
+      display: inline-block;
       padding: 10px;
       color: #fff;
       text-decoration: none;
@@ -28,9 +30,6 @@ export const MainNav = styled.ul`
       &:focus-visible:not(.active) {
         opacity: 0.8;
       }
-    }
-    &:not(:last-child) {
-      padding-right: 15px;
     }
   }
 `;

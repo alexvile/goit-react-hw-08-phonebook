@@ -17,6 +17,8 @@ import {
 } from '../LoginForm/LoginForm.styled';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
+import pandaRegister from '../../images/panda-svgrepo-com.svg';
+
 export const SignUpForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -61,7 +63,7 @@ export const SignUpForm = () => {
     <FormWrapper>
       <FormContainer>
         <ImageWrapper>
-          {/* <img src={pandaImg} width="64" alt="User avatar" /> */}
+          <img src={pandaRegister} width="64" alt="User avatar" />
         </ImageWrapper>
         <Title>Sign Up</Title>
         <Description>Please create account to use the platform</Description>

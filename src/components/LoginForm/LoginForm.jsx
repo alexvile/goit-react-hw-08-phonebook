@@ -19,7 +19,7 @@ import {
   IconCover,
 } from './LoginForm.styled';
 
-import pandaImg from './panda-svgrepo-com.svg';
+import pandaImg from '../../images/panda-svgrepo-com.svg';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();

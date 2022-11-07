@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
-export const List = styled.ul`
-  display: flex;
+export const AuthNavContainer = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
 `;

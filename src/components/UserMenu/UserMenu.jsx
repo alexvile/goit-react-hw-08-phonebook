@@ -2,13 +2,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserName, getUserEmail } from 'redux/authSlice';
 
 import { logout } from 'redux/authSlice';
-import defaultAvatar from './default-avatar.png';
+import defaultAvatar from '../../images/panda-face.png';
 import {
   UserContainer,
   ImageWrapper,
   WelcomeContainer,
   WelcomeMessage,
   Email,
+  LogoutBtn,
 } from './UserMenu.styled';
 
 export const UserMenu = () => {
@@ -27,14 +28,14 @@ export const UserMenu = () => {
         </WelcomeMessage>
         <Email>{userEmail}</Email>
       </WelcomeContainer>
-      <button
+      <LogoutBtn
         type="button"
         onClick={() => {
           dispatch(logout());
         }}
       >
         Logout
-      </button>
+      </LogoutBtn>
     </UserContainer>
   );
 };
