@@ -24,8 +24,8 @@ export const MainNav = styled.ul`
       &.active {
         text-decoration: underline;
       }
-      &:hover,
-      &:focus {
+      &:hover:not(.active),
+      &:focus-visible:not(.active) {
         opacity: 0.8;
       }
     }

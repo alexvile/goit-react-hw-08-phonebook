@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const FormWrapper = styled.div`
   text-align: center;
-
   padding: 10px;
   * {
     font-family: 'Lato', sans-serif;
@@ -13,6 +12,8 @@ export const FormContainer = styled.div`
   border-radius: 20px;
   width: fit-content;
   padding: 25px 35px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 export const ImageWrapper = styled.div`
   text-align: center;
@@ -37,7 +38,7 @@ export const Input = styled.input`
   border-radius: 20px;
   outline: transparent;
   padding: 10px 20px;
-  width: 80%;
+  width: 100%;
   border: 1px solid transparent;
   transition: all 400ms ease-in-out;
   &:hover,
