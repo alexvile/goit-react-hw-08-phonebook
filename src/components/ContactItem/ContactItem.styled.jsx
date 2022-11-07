@@ -67,3 +67,24 @@ export const DeleteBtn = styled.button`
     outline: none;
   }
 `;
+
+export const EditContainer = styled.div`
+  min-width: 400px;
+  padding: 15px;
+  position: relative;
+`;
+export const CloseModal = styled.button`
+  margin-left: auto;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  &:hover svg {
+    fill: #ed282d;
+  }
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+`;

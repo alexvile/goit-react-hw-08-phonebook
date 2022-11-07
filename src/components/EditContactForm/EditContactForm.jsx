@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateContact } from 'redux/contactsSlice';
+import {
+  MainForm,
+  InputWrapper,
+  Label,
+  Input,
+  Button,
+} from '../AddContactForm/AddContactForm.styled';
+import { Title } from './EditContactForm.styled';
 
 export const EditContactForm = ({ contactName, contactNumber, contactId }) => {
   const dispatch = useDispatch();
@@ -31,25 +39,23 @@ export const EditContactForm = ({ contactName, contactNumber, contactId }) => {
   };
   return (
     <>
-      <h1>Edit contact form</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Name</span>
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          <span>Phone</span>
-          <input
+      <Title>Edit contact</Title>
+      <MainForm onSubmit={handleSubmit}>
+        <InputWrapper>
+          <Label>Name</Label>
+          <Input type="text" name="name" value={name} onChange={handleChange} />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>Phone</Label>
+          <Input
             type="tel"
             name="number"
             value={number}
             onChange={handleChange}
           />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+        </InputWrapper>
+        <Button type="submit">Edit</Button>
+      </MainForm>
     </>
   );
 };
