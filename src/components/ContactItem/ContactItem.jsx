@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import { AiOutlineDelete, AiFillEdit } from 'react-icons/ai';
+
 import { deleteContact } from '../../redux/contactsSlice';
 import { isLoading } from '../../redux/contactsSlice';
-import { Card, CardText, DeleteBtn } from './ContactItem.styled';
+import { Card, CardText, DeleteBtn, Buttons } from './ContactItem.styled';
 import Modal from 'components/Modal/Modal';
 import { EditContactForm } from 'components/EditContactForm/EditContactForm';
 
@@ -30,16 +32,19 @@ const ContactItem = ({ id, name, number }) => {
         <span>{name}: </span>
         <span>{number}</span>
       </CardText>
-      <button type="button" onClick={toggleModal}>
-        Edit
-      </button>
-      <DeleteBtn
-        type="button"
-        disabled={isPending}
-        onClick={() => removeContact(id, name)}
-      >
-        Delete
-      </DeleteBtn>
+      <Buttons>
+        <DeleteBtn type="button" onClick={toggleModal}>
+          <span>Edit&nbsp;</span>
+          <AiFillEdit />
+        </DeleteBtn>
+        <DeleteBtn
+          type="button"
+          disabled={isPending}
+          onClick={() => removeContact(id, name)}
+        >
+          <AiOutlineDelete />
+        </DeleteBtn>
+      </Buttons>
 
       {modal && (
         <Modal onClose={toggleModal}>

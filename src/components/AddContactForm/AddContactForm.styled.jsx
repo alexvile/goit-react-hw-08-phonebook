@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const MainForm = styled.form`
-  padding: 20px;
+  padding: 10px;
   border: 1px dashed #c9c9c9;
   border-radius: 4px;
 `;
@@ -14,7 +14,7 @@ export const Label = styled.label`
   font-weight: 400;
   color: #000;
   line-height: 1.2;
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 4px;
 `;
 export const Input = styled.input`

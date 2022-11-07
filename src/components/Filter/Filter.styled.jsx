@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
-export const Form = styled.form`padding: 20px;
-    border: 1px dashed #c9c9c9;
-    border-radius: 4px;
-}`;
+export const Form = styled.form`
+  padding: 10px;
+  border: 1px dashed #c9c9c9;
+  border-radius: 4px;
+`;
 export const Label = styled.label`
   display: block;
   font-family: 'Lato', sans-serif;

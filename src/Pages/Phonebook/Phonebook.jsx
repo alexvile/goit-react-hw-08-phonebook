@@ -1,15 +1,16 @@
 import AddContactForm from 'components/AddContactForm/AddContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
+import { Wrapper, Title, Subitle } from './Phonebook.styled';
 const Phonebook = () => {
   return (
-    <>
-      <h1>Phonebook</h1>
+    <Wrapper>
+      <Title>Phonebook</Title>
       <AddContactForm />
-      <h2>Contacts</h2>
+      <Subitle>Contacts</Subitle>
       <Filter />
       <ContactList />
-    </>
+    </Wrapper>
   );
 };
 export default Phonebook;

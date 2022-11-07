@@ -19,6 +19,11 @@ export const CardText = styled.div`
   padding-left: 30px;
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 export const DeleteBtn = styled.button`
   background-image: linear-gradient(#42a1ec, #0070c9);
   border: 1px solid #0077cc;
@@ -37,9 +42,11 @@ export const DeleteBtn = styled.button`
   overflow: visible;
   padding: 4px 15px;
   text-align: center;
-  vertical-align: baseline;
   user-select: none;
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
   &:disabled {
     cursor: default;
     opacity: 0.3;

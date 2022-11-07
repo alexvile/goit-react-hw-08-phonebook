@@ -10,10 +10,14 @@ export const Container = styled.div`
 `;
 export const TextContainer = styled.div`
   background-color: #f5e5e5;
-  padding: 10px;
-  border-radius: 30px;
+  padding: 25px 35px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 `;
 export const HomeNav = styled.ul`
+  list-style-type: none;
   li {
     a {
       width: fit-content;
