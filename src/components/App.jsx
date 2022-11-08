@@ -11,6 +11,7 @@ import { Layout } from './Layout/Layout';
 import { lazy } from 'react';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { PublicRoute } from './PublicRoute/PublicRoute';
+import { Empty } from '../Pages/Empty/Empty';
 
 const Home = lazy(() => import('../Pages/Home/Home'));
 const Register = lazy(() => import('../Pages/Register/Register'));
@@ -54,7 +55,7 @@ export default function App() {
               </PrivateRoute>
             }
           />
-          <Route path="*" element={<div>404</div>} />
+          <Route path="*" element={<Empty />} />
         </Route>
       </Routes>
       {/* {error !== null && <ErrorMessage>{error}</ErrorMessage>} */}
