@@ -63,6 +63,7 @@ const ContactItem = ({ id, name, number }) => {
               contactName={name}
               contactNumber={number}
               contactId={id}
+              onClose={toggleModal}
             />
           </EditContainer>
         </Modal>

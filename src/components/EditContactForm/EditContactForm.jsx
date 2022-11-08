@@ -11,7 +11,12 @@ import {
 } from '../AddContactForm/AddContactForm.styled';
 import { Title } from './EditContactForm.styled';
 
-export const EditContactForm = ({ contactName, contactNumber, contactId }) => {
+export const EditContactForm = ({
+  contactName,
+  contactNumber,
+  contactId,
+  onClose,
+}) => {
   const dispatch = useDispatch();
   const [name, setName] = useState(contactName);
   const [number, setNumber] = useState(contactNumber);
@@ -25,16 +30,13 @@ export const EditContactForm = ({ contactName, contactNumber, contactId }) => {
       default:
         return;
     }
-    // console.log();
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(login({ email, password }));
-    console.log(e);
-    // console.log({ name, number });
-    // console.log(contactId);
+    // console.log(e);
     dispatch(updateContact({ id: contactId, name, number }));
+    onClose();
     // resetForm();
   };
   return (

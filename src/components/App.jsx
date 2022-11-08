@@ -1,11 +1,10 @@
-// import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { fetchCurrentUser } from 'redux/authSlice';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // import { errorMessage } from '../redux/contactsSlice';
 // import { Container, Title, Subtitle, ErrorMessage } from './App.styled';
@@ -34,7 +33,7 @@ export default function App() {
 
   return (
     <>
-      {/* <ToastContainer autoClose={1250} /> */}
+      <ToastContainer autoClose={1800} />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -65,8 +64,7 @@ export default function App() {
           <Route path="*" element={<div>404</div>} />
         </Route>
       </Routes>
+      {/* {error !== null && <ErrorMessage>{error}</ErrorMessage>} */}
     </>
-    //
-    //   {error !== null && <ErrorMessage>{error}</ErrorMessage>}
   );
 }
