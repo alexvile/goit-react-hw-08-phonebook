@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
@@ -18,10 +18,13 @@ import {
   ShowHidePass,
   IconCover,
 } from './LoginForm.styled';
-
+import { Loader } from 'components/Loader/Loader';
+import { getIsLoadingAuth } from 'redux/authSlice';
 import pandaImg from '../../images/panda-svgrepo-com.svg';
 
 export const LoginForm = () => {
+  const isPending = useSelector(getIsLoadingAuth);
+
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -58,6 +61,8 @@ export const LoginForm = () => {
   };
   return (
     <FormWrapper>
+      {isPending && <Loader />}
+
       <FormContainer>
         <ImageWrapper>
           <img src={pandaImg} width="64" alt="User avatar" />

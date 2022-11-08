@@ -1,7 +1,6 @@
 import mainImg from 'images/panda-home.png';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/authSlice';
-
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -17,7 +16,7 @@ const Home = () => {
   return (
     <Wrapper>
       <Container>
-        <img src={mainImg} alt="Main" width={150} />
+        <img src={mainImg} alt="Main" width={150} loading="lazy" />
         <TextContainer>
           <h1>Hey! Welcome</h1>
           <p>We are glad to see you at the main page of the "Phonebook" app.</p>
