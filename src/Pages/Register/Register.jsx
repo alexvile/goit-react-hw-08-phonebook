@@ -6,6 +6,16 @@ import { Error } from 'components/Error/Error';
 
 const Register = () => {
   const error = useSelector(errorMessageAuth);
-  return <>{error ? <Error>{error}</Error> : <SignUpForm />}</>;
+  return (
+    <>
+      {error ? (
+        <Error addMessage={<span>This email is already used</span>}>
+          {error}
+        </Error>
+      ) : (
+        <SignUpForm />
+      )}
+    </>
+  );
 };
 export default Register;

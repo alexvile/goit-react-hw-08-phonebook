@@ -6,7 +6,15 @@ import { Error } from 'components/Error/Error';
 
 const Login = () => {
   const error = useSelector(errorMessageAuth);
-  return <>{error ? <Error>{error}</Error> : <LoginForm />}</>;
+  return (
+    <>
+      {error ? (
+        <Error addMessage={<span>Wrong email or password</span>}>{error}</Error>
+      ) : (
+        <LoginForm />
+      )}
+    </>
+  );
 };
 
 export default Login;

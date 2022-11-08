@@ -36,7 +36,7 @@ export const login = createAsyncThunk('auth/login',
 
 export const logout = createAsyncThunk('auth/logout',
     async () => { 
-            await axios.post('/users/logou');
+            await axios.post('/users/logout');
             token.unset();
             // console.log(error);
     }
@@ -78,7 +78,9 @@ const authSlice = createSlice({
      },
     extraReducers: {
         [register.pending]: (state, _) => { 
-             state.isLoading = true;
+            state.isLoading = true;
+             state.error = null;
+            
          },
          [register.fulfilled]: (state, action) => { 
             //  console.log('action ', action);
@@ -94,13 +96,17 @@ const authSlice = createSlice({
             state.error = action.error.message;
         },
             [login.pending]: (state, _) => { 
-             state.isLoading = true;
+                state.isLoading = true;
+             state.error = null;
+                
          },
           [login.fulfilled]: (state, action) => { 
             //  console.log('action ', action);
              state.user = action.payload.user;
              state.token = action.payload.token;
-             state.isLoggedIn = true;
+              state.isLoggedIn = true;
+                state.isLoading = false;
+              
         },
            [login.rejected]: (state, action) => { 
             // console.log(action);
@@ -109,7 +115,8 @@ const authSlice = createSlice({
         },
             [logout.pending]: (state, _) => { 
             //  console.log('action ', action);
-             state.isLoading = true;
+                state.isLoading = true;
+                
          },
           [logout.fulfilled]: (state, _) => { 
             //  console.log('action ', action);
