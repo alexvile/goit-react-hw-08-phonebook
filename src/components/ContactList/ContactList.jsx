@@ -34,7 +34,7 @@ const ContactList = () => {
         filteredContacts.map(({ id, name, number }) => {
           return <ContactItem key={id} id={id} name={name} number={number} />;
         })}
-      {filteredContacts.length === 0 && (
+      {contacts.length === 0 && (
         <div>
           <p>You haven't any contact yet...</p>
           <div>

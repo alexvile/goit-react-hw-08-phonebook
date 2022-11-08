@@ -50,7 +50,8 @@ export const updateContact = createAsyncThunk(
       isAdding: false,
       isDeleting: false,
       isUpdating: false,
-      error: null
+      error: null,
+      addSuccessfull: false,
     },
     filter: ""
 },
@@ -74,18 +75,22 @@ export const updateContact = createAsyncThunk(
       state.error = action.error.message;
      },
      [addContact.pending]: (state) => { 
-        state.isAdding = true;
+       state.isAdding = true;
+       state.addSuccessfull = false;
      },
      [addContact.fulfilled]: (state, action) => {
       // console.log(action);
       state.isAdding = false;
       state.error = null;
-      state.contacts.items = [...state.contacts.items, action.payload];
+       state.contacts.items = [...state.contacts.items, action.payload];
+       state.addSuccessfull = true;
      },
      [addContact.rejected]: (state, action) => {
       // console.log(action);
       state.isAdding = false;
-      state.error = action.error.message;
+       state.error = action.error.message;
+       state.addSuccessfull = false;
+       
      },
     [deleteContact.pending]: (state) => { 
       state.isDeleting = true;
@@ -142,5 +147,5 @@ export const isAdding = state => state.phonebook.isAdding;
 export const isDeleting = state => state.phonebook.isDeleting;
 export const isUpdating = state => state.phonebook.isUpdating;
 export const errorMessage = state => state.phonebook.error;
-
+export const addSuccessfull = state => state.phonebook.addSuccessfull;
 

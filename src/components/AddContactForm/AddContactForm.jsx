@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { TailSpin } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 
-import { getContacts, addContact, isAdding } from '../../redux/contactsSlice';
+import { getContacts, addContact, isAdding } from 'redux/contactsSlice';
 
 import { nanoid } from 'nanoid';
 import {
@@ -15,6 +15,9 @@ import {
 } from './AddContactForm.styled';
 
 export default function AddContactForm() {
+  // const isSuccess = useSelector(addSuccessfull);
+  // console.log(isSuccess);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
