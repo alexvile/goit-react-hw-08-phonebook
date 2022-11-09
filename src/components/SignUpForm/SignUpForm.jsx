@@ -39,11 +39,11 @@ export const SignUpForm = () => {
     }
   };
 
-  const resetForm = () => {
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+  // const resetForm = () => {
+  //   setName('');
+  //   setEmail('');
+  //   setPassword('');
+  // };
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -59,9 +59,8 @@ export const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log({ name, email, password });
     dispatch(register({ name, email, password }));
-    resetForm();
+    // resetForm();
   };
 
   return (

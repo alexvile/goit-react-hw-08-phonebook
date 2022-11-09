@@ -74,7 +74,9 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-     
+       resetError(state, _) { 
+            state.error = null;
+    }
      },
     extraReducers: {
         [register.pending]: (state, _) => { 
@@ -146,6 +148,7 @@ const authSlice = createSlice({
      }
 })
 
+export const { resetError } = authSlice.actions
 export default authSlice.reducer
 
 // Selectors

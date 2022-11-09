@@ -1,4 +1,4 @@
-import { ErrorWrapper } from './Error.styled';
+import { ErrorWrapper, Message } from './Error.styled';
 import pandaImg from 'images/sad-panda.png';
 
 export const Error = ({ children, addMessage = null }) => {
@@ -14,7 +14,7 @@ export const Error = ({ children, addMessage = null }) => {
       {isStatus400 ? (
         <div>
           <h1>Ups, something went wrong</h1>
-          {addMessage && <p>{addMessage}</p>}
+          {addMessage && <Message>{addMessage}</Message>}
           <p>Erorr message:</p>
           <p>{children}</p>
         </div>

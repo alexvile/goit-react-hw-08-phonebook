@@ -38,10 +38,10 @@ export const LoginForm = () => {
     }
   };
 
-  const resetForm = () => {
-    setEmail('');
-    setPassword('');
-  };
+  // const resetForm = () => {
+  //   setEmail('');
+  //   setPassword('');
+  // };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -57,7 +57,7 @@ export const LoginForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(login({ email, password }));
-    resetForm();
+    // resetForm();
   };
   return (
     <FormWrapper>
